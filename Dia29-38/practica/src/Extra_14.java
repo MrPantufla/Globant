@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Ej_13 {
+public class Extra_14 {
     public static void main(String[] args) throws Exception {
         Scanner leer = new Scanner(System.in);
 
