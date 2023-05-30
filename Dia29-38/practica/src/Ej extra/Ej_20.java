@@ -1,4 +1,4 @@
-package Ej extra;
+import java.util.Scanner;
 
 public class Ej_20 {
     public static void main(String[] args) throws Exception {
