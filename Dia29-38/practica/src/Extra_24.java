@@ -10,11 +10,10 @@ public class Extra_24 {
         vector[0]=1;
         vector[1]=1;
 
+        System.out.print(vector[0] + " ");
+        System.out.print(vector[1] + " ");
         for (int i = 2; i < n; i++) {
             vector[i]=vector[i-1]+vector[i-2];
-        }
-
-        for (int i = 0; i < vector.length; i++) {
             System.out.print(vector[i] + " ");
         }
     }
