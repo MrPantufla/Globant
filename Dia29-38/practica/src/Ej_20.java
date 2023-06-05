@@ -15,8 +15,13 @@ public class Ej_20 {
         for (int i = 0; i < cuadrado.length; i++) {
             for (int j = 0; j < cuadrado.length; j++) {
                 cuadrado[i][j]=leer.nextInt();
+            }
+        }
+
+        for (int i = 0; i < cuadrado.length; i++) {
+            for (int j = 0; j < cuadrado.length; j++) {
                 arr[i]+=cuadrado[i][j];
-                arr[j+3]+=cuadrado[i][j];
+                arr[j+3]+=cuadrado[j][i];
 
                 if(i==j){
                     arr[6]+=cuadrado[i][j];
