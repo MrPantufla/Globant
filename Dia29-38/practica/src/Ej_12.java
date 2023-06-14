@@ -12,7 +12,8 @@ public class Ej_12 {
             if(((cadena.substring(0, 1)).equals("X"))&&(cadena.length()==5)&&((cadena.substring(4, 5)).equals("O"))){
                 count++;
             }
-        }while(!(cadena.equals("&&&&&")));
+        }
+        
 
         System.out.println("El numero de cadenas correctas es: "+ count);
     }

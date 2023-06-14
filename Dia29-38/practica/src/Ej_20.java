@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+import javax.print.attribute.SupportedValuesAttribute;
+
 public class Ej_20 {
     public static void main(String[] args) throws Exception {
         Scanner leer = new Scanner(System.in);
@@ -32,7 +34,7 @@ public class Ej_20 {
                 }
             }
         }
-
+        
         for (int i = 0; i < arr.length-1; i++) {
             if(arr[i]!=arr[i+1]){
                 band=false;
