@@ -3,9 +3,9 @@ import Services.AlquilerService;
 import Services.PeliculaService;
 import Objects.Alquiler;
 import Objects.Pelicula;
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Date;
+import java.time.LocalDate;
 
 public class Cooperativo3 {
     
@@ -102,21 +102,19 @@ public class Cooperativo3 {
                     break;
                 case 7:
                     boolean flag3=false;
-                    System.out.println("Ingresar fecha a buscar");
-                    int dia, mes, anio;
-                    dia=leer.nextInt();
-                    mes=leer.nextInt();
-                    anio=leer.nextInt();
-                    leer.nextLine();
-                    Date nuevaFecha = new Date(dia, mes, anio);
+                    System.out.println("Ingresar fecha a buscar con formato YYYY-MM-DD");
+                    String ingresarFecha=leer.nextLine();
+                    LocalDate nuevaFecha = LocalDate.parse(ingresarFecha);
                     System.out.println("NUEVA FECHA" + nuevaFecha);
                     System.out.println("FECHA" + a[0].getFechaInicio());
-                  
+                    int comparacion;
                     for (int i = 0; i < 10; i++){
-                        if(p[i]==null){
+                        if(a[i]==null){
                             break;
                         }
-                        int comparacion=(a[i].getFechaInicio().compareTo(nuevaFecha));
+                        
+                        comparacion=(nuevaFecha.compareTo(a[i].getFechaInicio()));
+                        
                         if(comparacion==0){
                             flag3=true;
                             break;
