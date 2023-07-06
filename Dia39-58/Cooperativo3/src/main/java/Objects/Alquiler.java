@@ -5,12 +5,12 @@ public class Alquiler {
     private String peliculaAlquilada;
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
-    private int precio;
+    private long precio;
 
     public Alquiler() {
     }
 
-    public Alquiler(String peliculaAlquilada, LocalDate fechaInicio, LocalDate fechaFin, int precio) {
+    public Alquiler(String peliculaAlquilada, LocalDate fechaInicio, LocalDate fechaFin, long precio) {
         this.peliculaAlquilada = peliculaAlquilada;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
@@ -29,7 +29,7 @@ public class Alquiler {
         return fechaFin;
     }
 
-    public int getPrecio() {
+    public long getPrecio() {
         return precio;
     }
 
@@ -45,7 +45,7 @@ public class Alquiler {
         this.fechaFin = fechaFin;
     }
 
-    public void setPrecio(int precio) {
+    public void setPrecio(long precio) {
         this.precio = precio;
     }
 

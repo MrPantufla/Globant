@@ -4,7 +4,6 @@ import Services.PeliculaService;
 import Objects.Alquiler;
 import Objects.Pelicula;
 import java.util.Scanner;
-import java.util.Date;
 import java.time.LocalDate;
 
 public class Cooperativo3 {
@@ -30,39 +29,58 @@ public class Cooperativo3 {
             System.out.println("6: Buscar una película por género");
             System.out.println("7: Buscar un alquiler por fecha");
             System.out.println("8: Calcular el ingreso total del servicio");
+            System.out.println("9: Salir");
             
             int opcion = leer.nextInt();
             leer.nextLine();
             
             switch(opcion){
-                case 1:
+                case 1 -> {
                     p[contadorPeliculasAñadidas] = pelicula.crearPelicula();
                     contadorPeliculasAñadidas++;
-                    break;
-                case 2:
-                    a[contadorAlquileresAñadidos] = alquiler.crearAlquiler();
-                    contadorAlquileresAñadidos++;
-                    break;
-                case 3:
-                    for (int i = 0; i < 10; i++) {
+                }
+                case 2 -> {
+                    System.out.println("Ingrese nombre de pelicula a alquilar");
+                    String nombrePelicula = leer.nextLine();
+                    boolean flag=false;
+                     
+                    for (int i = 0; i < p.length; i++) {
+                        if(p[i]==null){
+                            break;
+                        }
+                        
+                        if(nombrePelicula.equals(p[i].getTitulo())){
+                            flag=true;
+                        }
+                    }
+                    if(flag){
+                        a[contadorAlquileresAñadidos] = alquiler.crearAlquiler(nombrePelicula);
+                        contadorAlquileresAñadidos++;
+                    }
+                    else{
+                        System.out.println("La pelicula que intenta alquilar no existe");
+                    }
+                }   
+                case 3 -> {
+                    for (int i = 0; i < p.length; i++) {
                         System.out.println(p[i]);
                         if(p[i]==null){
                             break;
                         }
                     }
-                    break;
-                case 4:
+                }
+                case 4 -> {
                     int j=0;
                     while(a[j]!=null){
                         System.out.println(a[j]);
                         j++;
                     }
-                    break;
-                case 5:
+                }
+                case 5 -> {
                     boolean flag=false;
                     System.out.println("Ingresar pelicula a buscar");
                     String titulo = leer.nextLine();
-                    for (int i = 0; i < 10; i++){
+                    for (int i = 0; i < p.length; i++){
                         if(p[i]==null){
                             break;
                         }
@@ -78,12 +96,12 @@ public class Cooperativo3 {
                     else{
                         System.out.println("La pelicula no se encuentra en la lista");
                     }
-                    break;
-                case 6:
+                }
+                case 6 -> {
                     boolean flag2=false;
                     System.out.println("Ingresar genero a buscar");
                     String genero = leer.nextLine();
-                    for (int i = 0; i < 10; i++){
+                    for (int i = 0; i < p.length; i++){
                         if(p[i]==null){
                             break;
                         }
@@ -99,16 +117,15 @@ public class Cooperativo3 {
                     else{
                         System.out.println("La pelicula no se encuentra en la lista");
                     }
-                    break;
-                case 7:
+                }
+                case 7 -> {
                     boolean flag3=false;
                     System.out.println("Ingresar fecha a buscar con formato YYYY-MM-DD");
                     String ingresarFecha=leer.nextLine();
                     LocalDate nuevaFecha = LocalDate.parse(ingresarFecha);
-                    System.out.println("NUEVA FECHA" + nuevaFecha);
-                    System.out.println("FECHA" + a[0].getFechaInicio());
+                    
                     int comparacion;
-                    for (int i = 0; i < 10; i++){
+                    for (int i = 0; i < p.length; i++){
                         if(a[i]==null){
                             break;
                         }
@@ -126,7 +143,21 @@ public class Cooperativo3 {
                     else{
                         System.out.println("La pelicula no se encuentra en la lista");
                     }
-                    break;
+                }
+                case 8 -> {
+                    int sumaTotal=0;
+                    
+                    for (int i = 0; i < a.length; i++) {
+                        if(a[i]==null){
+                            break;
+                        }
+                        
+                        sumaTotal+=a[i].getPrecio();
+                    }
+                    
+                    System.out.println("El ingreso total del servicio es: " + sumaTotal);
+                }
+                case 9 -> band=true;
             }
         }
     }
