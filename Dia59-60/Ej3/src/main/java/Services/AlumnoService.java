@@ -11,10 +11,9 @@ public class AlumnoService {
     public void crearAlumnos(){
         String opcion;
         boolean band=false;
-        Alumno a = new Alumno();
         
         while(band==false){
-            
+            Alumno a = new Alumno();
             System.out.println("Ingresar nombre");
             a.setNombre(leer.nextLine());
             System.out.println("Ingresar las tres notas");
@@ -52,11 +51,5 @@ public class AlumnoService {
         if(!encontrado){
             System.out.println("El alumno ingresado no existe");
         } 
-    }
-    
-    public void mostrar(){
-        for(Alumno i : alumnos){
-            System.out.println(i.getNombre());
-        }
     }
 }
