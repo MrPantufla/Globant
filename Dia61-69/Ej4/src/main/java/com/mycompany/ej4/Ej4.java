@@ -1,16 +1,29 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
 package com.mycompany.ej4;
+import Services.PeliculaService;
 
-/**
- *
- * @author juanm
- */
 public class Ej4 {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        PeliculaService p = new PeliculaService();
+        
+        p.cargarPeliculas();
+        System.out.println("");
+        
+        p.mostrarPeliculas();
+        System.out.println("");
+        
+        p.mostrarPeliculasLargas();
+        System.out.println("");
+        
+        p.mayorAMenor();
+        System.out.println("");
+        
+        p.menorAMayor();
+        System.out.println("");
+        
+        p.ordenadasPorTitulo();
+        System.out.println("");
+        
+        p.ordenadasPorDirector();
     }
 }
