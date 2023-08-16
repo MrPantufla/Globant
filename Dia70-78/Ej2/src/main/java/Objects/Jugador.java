@@ -38,5 +38,13 @@ public class Jugador {
         this.mojado = mojado;
     }
     
-    
+    public boolean disparo(Revolver r){
+        if(r.mojar()){
+            return true;
+        }
+        else{
+            r.siguienteChorro();
+            return false;
+        }
+    }
 }

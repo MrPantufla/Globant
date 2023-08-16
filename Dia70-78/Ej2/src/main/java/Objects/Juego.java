@@ -29,4 +29,24 @@ public class Juego {
         this.revolver = revolver;
     }
     
+    public void llenarJuego(ArrayList<Jugador>jugadores, Revolver r){
+        setJugadores(jugadores);
+        setRevolver(r);
+    }
+    
+    public int ronda(){
+        ArrayList<Jugador>players = getJugadores();
+        
+        for(Jugador j : players){
+            if(j.disparo(revolver)){
+                System.out.println(j.getNombre() + " ha perdido");
+                return 0;
+            }
+            else{
+                System.out.println(j.getNombre() + " se salva");
+            }
+        }
+        
+        return 0;
+    }
 }
