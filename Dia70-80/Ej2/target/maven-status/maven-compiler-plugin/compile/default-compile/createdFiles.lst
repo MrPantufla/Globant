@@ -1,0 +1,7 @@
+com\mycompany\ej2\Ej2.class
+Objects\Jugador.class
+Services\RevolverService.class
+Objects\Revolver.class
+Objects\Juego.class
+Services\JuegoService.class
+Services\JugadorService.class

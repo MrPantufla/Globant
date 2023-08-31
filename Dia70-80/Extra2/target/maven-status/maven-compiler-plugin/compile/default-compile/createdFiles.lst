@@ -1,0 +1,7 @@
+Objects\Pelicula.class
+com\mycompany\extra2\Extra2.class
+Objects\Cine.class
+Objects\Espectador.class
+Services\PeliculaService.class
+Services\EspectadorService.class
+Services\CineService.class
