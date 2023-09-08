@@ -21,7 +21,7 @@ public class LavadoraService extends ElectrodomesticoService{
         return new Lavadora(l.getPrecio(), l.getColor(), l.getConsumo(), l.getPeso(), l.getCarga());
     }
     
-    public int precioFinal(){ 
+    public int precioFinal(Lavadora l){ 
         if(l.getCarga()>30){
             l.setPrecio(l.getPrecio()+500);
         }
@@ -29,10 +29,12 @@ public class LavadoraService extends ElectrodomesticoService{
         return l.getPrecio();
     }
     
-    public void mostrarLavadora(){
+    public void mostrarLavadora(Lavadora l){
+        System.out.println("LAVADORA");
         System.out.println("Precio: " + l.getPrecio());
         System.out.println("Color: " + l.getColor());
         System.out.println("Consumo: " + l.getConsumo());
         System.out.println("Carga: " + l.getCarga());
+        System.out.println("");
     }
 }

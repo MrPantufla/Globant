@@ -22,13 +22,13 @@ public class Ej2y3 {
         for(Electrodomestico i : electrodomesticos){
             
             if (i instanceof Lavadora) {
-                l.mostrarLavadora();
-                System.out.println("PRECIO: " + l.precioFinal());
+                l.mostrarLavadora((Lavadora) i);
+                System.out.println("PRECIO: " + l.precioFinal((Lavadora)i));
                 sum+=l.precioFinal();
             }
             else if(i instanceof Televisor){
-                t.mostrarTelevisor();
-                System.out.println("PRECIO: " + t.precioFinal());
+                t.mostrarTelevisor((Televisor) i);
+                System.out.println("PRECIO: " + t.precioFinal((Televisor)i));
                 sum+=t.precioFinal();
             }
         }

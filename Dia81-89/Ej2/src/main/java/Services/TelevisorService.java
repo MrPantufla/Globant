@@ -30,7 +30,7 @@ public class TelevisorService extends ElectrodomesticoService{
         return new Televisor(t.getPrecio(), t.getColor(), t.getConsumo(), t.getResolucion(), t.getPeso(), t.isSintonizador());
     }
     
-    public int precioFinal(){
+    public int precioFinal(Televisor t){
         if(t.getResolucion()>40){
             double aux = t.getPrecio()*1.3;
             t.setPrecio((int)aux);
@@ -43,11 +43,13 @@ public class TelevisorService extends ElectrodomesticoService{
         return t.getPrecio();
     }
     
-    public void mostrarTelevisor(){
+    public void mostrarTelevisor(Televisor t){
+        System.out.println("TELEVISOR");
         System.out.println("Precio: " + t.getPrecio());
         System.out.println("Color: " + t.getColor());
         System.out.println("Consumo: " + t.getConsumo());
         System.out.println("Resolucion: " + t.getResolucion());
         System.out.println("Sintonizador: " + t.isSintonizador());
+        System.out.println("");
     }
 }
