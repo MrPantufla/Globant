@@ -69,26 +69,107 @@ INSERT INTO `empleados` VALUES (785,'Joaquín Rosas','M','1947-07-07','1990-05-1
 INSERT INTO `empleados` VALUES (898,'Iván Duarte','M','1955-08-12','1998-05-16',1050000,200000,'Mecánico',4100);
 
 SELECT * FROM empleados;
+
 SELECT * FROM departamentos;
+
 SELECT nombre FROM empleados;
-SELECT nombre, sal_emp FROM empleados;
-SELECT comision_emp FROM empleados;
-SELECT * FROM empleados WHERE cargo_emp='Secretaria';
-SELECT * FROM empleados WHERE cargo_emp='Vendedor' ORDER BY nombre ASC;
-SELECT nombre, cargo_emp FROM empleados ORDER BY sal_emp ASC;
-SELECT e.nombre FROM empleados e INNER JOIN departamentos d ON e.id_depto = d.id_depto WHERE e.cargo_emp LIKE 'Jefe%' AND d.ciudad = 'CIUDAD REAL';
-SELECT nombre, cargo_emp FROM empleados;
-SELECT sal_emp, comision_emp FROM empleados e WHERE id_depto=2000 ORDER BY comision_emp ASC;
-SELECT nombre, (sal_emp + comision_emp + 500) AS total_a_pagar FROM empleados e WHERE id_depto=3000 ORDER BY nombre ASC;
-SELECT * from empleados WHERE nombre LIKE 'J%';
-SELECT sal_emp, comision_emp, (sal_emp + comision_emp) AS salario_total, nombre from empleados WHERE comision_emp>1000;
-SELECT sal_emp, comision_emp, (sal_emp + comision_emp) AS salario_total, nombre from empleados WHERE comision_emp=NULL;
-SELECT * from empleados WHERE comision_emp>sal_emp;
-SELECT * from empleados WHERE comision_emp<(sal_emp*30/100);
-SELECT * from empleados WHERE nombre NOT LIKE '%ma%';
-SELECT nombre_depto from departamentos WHERE nombre_depto='Ventas' OR  nombre_depto='Mantenimiento' OR  nombre_depto='Investigación';
-SELECT nombre_depto from departamentos WHERE nombre_depto!='Ventas' AND  nombre_depto!='Mantenimiento' AND  nombre_depto!='Investigación';
-SELECT MAX(sal_emp) from empleados;
-SELECT nombre from empleados ORDER BY nombre DESC LIMIT 1;
-SELECT MAX(sal_emp), MIN(sal_emp), (MAX(sal_emp)-MIN(sal_emp)) AS diferencia from empleados;
-SELECT d.nombre_depto AS departamento, AVG(e.sal_emp) AS salario_promedio FROM departamentos d INNER JOIN empleados e ON d.id_depto = e.id_depto GROUP BY d.id_depto, d.nombre_depto;
+
+SELECT nombre, sal_emp 
+	FROM empleados;
+    
+SELECT comision_emp 
+	FROM empleados;
+
+SELECT * 
+	FROM empleados 
+    WHERE cargo_emp='Secretaria';
+
+SELECT * 
+	FROM empleados 
+    WHERE cargo_emp='Vendedor' 
+    ORDER BY nombre ASC;
+
+SELECT nombre, cargo_emp 
+	FROM empleados 
+    ORDER BY sal_emp ASC;
+
+SELECT e.nombre 
+	FROM empleados e 
+    INNER JOIN departamentos d ON e.id_depto = d.id_depto 
+    WHERE e.cargo_emp LIKE 'Jefe%' AND d.ciudad = 'CIUDAD REAL';
+
+SELECT nombre, cargo_emp 
+	FROM empleados;
+
+SELECT sal_emp, comision_emp 
+	FROM empleados e WHERE id_depto=2000 
+    ORDER BY comision_emp ASC;
+
+SELECT nombre, (sal_emp + comision_emp + 500) AS total_a_pagar 
+	FROM empleados e WHERE id_depto=3000 
+    ORDER BY nombre ASC;
+
+SELECT * from empleados 
+	WHERE nombre LIKE 'J%';
+
+SELECT sal_emp, comision_emp, (sal_emp + comision_emp) AS salario_total, nombre 
+	FROM empleados 
+    WHERE comision_emp>1000;
+
+SELECT sal_emp, comision_emp, (sal_emp + comision_emp) AS salario_total, nombre 
+	FROM empleados 
+    WHERE comision_emp=NULL;
+
+SELECT * 
+	FROM empleados 
+	WHERE comision_emp>sal_emp;
+
+SELECT * 
+	FROM empleados
+    WHERE comision_emp<(sal_emp*30/100);
+
+SELECT * 
+	FROM empleados
+    WHERE nombre NOT LIKE '%ma%';
+
+SELECT nombre_depto 
+	FROM departamentos 
+    WHERE nombre_depto='Ventas' OR  nombre_depto='Mantenimiento' OR  nombre_depto='Investigación';
+
+SELECT nombre_depto 
+	FROM departamentos 
+    WHERE nombre_depto!='Ventas' AND  nombre_depto!='Mantenimiento' AND  nombre_depto!='Investigación';
+
+SELECT MAX(sal_emp) 
+	from empleados;
+
+SELECT nombre 
+	FROM empleados 
+    ORDER BY nombre DESC LIMIT 1;
+
+SELECT MAX(sal_emp), MIN(sal_emp), (MAX(sal_emp)-MIN(sal_emp)) AS diferencia 
+	FROM empleados;
+
+SELECT d.nombre_depto, AVG(e.sal_emp) AS salario_promedio 
+	FROM departamentos d 
+    INNER JOIN empleados e ON d.id_depto 
+    GROUP BY d.id_depto, d.nombre_depto;
+
+SELECT d.nombre_depto, COUNT(e.id_emp) AS cant_empleados 
+	FROM departamentos d 
+    INNER JOIN empleados e ON d.id_depto = e.id_depto 
+    GROUP BY d.id_depto 
+    HAVING COUNT(e.id_emp)>3;
+
+SELECT d.nombre_depto 
+	FROM departamentos d 
+    INNER JOIN empleados e ON d.id_depto = e.id_depto 
+    GROUP BY d.id_depto 
+    HAVING COUNT(e.id_emp)=0;
+
+SELECT e.nombre, e.sal_emp, d.nombre_depto 
+	FROM empleados e 
+    INNER JOIN departamentos d ON e.id_depto=d.id_depto 
+    WHERE e.sal_emp >= (SELECT AVG(sal_emp) from empleados) 
+    ORDER BY nombre_depto ASC;
+
