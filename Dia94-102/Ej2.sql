@@ -58,4 +58,65 @@ SELECT codigo_fabricante
 	INNER JOIN producto p ON p.codigo_fabricante=f.codigo
     GROUP BY f.codigo;
     
+SELECT nombre
+	FROM fabricante
+	ORDER BY nombre ASC;
+    
+SELECT nombre
+	FROM producto
+	ORDER BY nombre ASC;
 
+SELECT nombre
+	FROM producto
+	ORDER BY nombre DESC;    
+
+SELECT *
+	FROM fabricante
+    LIMIT 5;
+
+SELECT nombre, precio
+	FROM producto
+	ORDER BY precio ASC
+    LIMIT 1;
+
+SELECT nombre, precio
+	FROM producto
+	ORDER BY precio DESC
+    LIMIT 1;
+
+SELECT nombre
+	FROM producto
+    WHERE precio<=120;
+    
+SELECT *
+	FROM producto
+    WHERE precio BETWEEN 60 AND 200;
+    
+SELECT *
+	FROM producto
+    WHERE codigo_fabricante IN(1,3,5);
+    
+SELECT nombre
+	FROM producto
+    WHERE nombre LIKE ("Portátil%");
+    
+SELECT p.codigo, p.nombre, p.codigo_fabricante, f.nombre
+	FROM producto p
+    JOIN fabricante f ON p.codigo_fabricante = f.codigo;
+    
+SELECT p.codigo, p.nombre, f.nombre
+	FROM producto p
+    JOIN fabricante f ON p.codigo_fabricante = f.codigo
+    ORDER BY f.nombre ASC;
+    
+SELECT p.nombre, p.precio, f.nombre
+	FROM producto p
+    INNER JOIN fabricante f ON p.codigo_fabricante = f.codigo
+    ORDER BY precio ASC
+    LIMIT 1;
+    
+SELECT *
+	FROM producto
+    INNER JOIN fabricante f ON codigo_fabricante = f.codigo
+    WHERE f.nombre='Lenovo';
+    
