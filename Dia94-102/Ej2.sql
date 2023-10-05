@@ -120,3 +120,73 @@ SELECT *
     INNER JOIN fabricante f ON codigo_fabricante = f.codigo
     WHERE f.nombre='Lenovo';
     
+SELECT *
+	FROM producto p
+    INNER JOIN fabricante f ON codigo_fabricante = f.codigo
+    WHERE f.nombre='Crucial' AND p.precio>200;
+    
+SELECT *
+	FROM producto p
+    INNER JOIN fabricante f ON codigo_fabricante = f.codigo
+    WHERE f.nombre IN ('Asus', 'Hewlett-Packard');
+    
+SELECT p.nombre, precio, f.nombre
+	FROM producto p
+    INNER JOIN fabricante f ON codigo_fabricante = f.codigo
+    WHERE p.precio>=180
+    ORDER BY precio ASC;
+    
+SELECT p.nombre, precio, f.nombre
+	FROM producto p
+    INNER JOIN fabricante f ON codigo_fabricante = f.codigo
+    WHERE p.precio>=180
+    ORDER BY precio DESC;
+    
+SELECT f.nombre, p.nombre
+	FROM fabricante f
+    LEFT JOIN producto p ON f.codigo = p.codigo_fabricante;
+    
+
+SELECT nombre
+	FROM fabricante
+    WHERE codigo NOT IN(SELECT DISTINCT codigo_fabricante FROM producto);
+    
+SELECT p.nombre
+	FROM producto p
+    WHERE codigo_fabricante = (SELECT codigo FROM fabricante WHERE nombre='Lenovo');
+    
+SELECT * 
+	FROM producto
+    WHERE precio = (SELECT MAX(precio) from producto WHERE codigo_fabricante= (SELECT codigo FROM fabricante WHERE nombre='Lenovo'));
+
+SELECT p.nombre
+	FROM producto p
+    WHERE codigo_fabricante = (SELECT codigo FROM fabricante WHERE nombre='Lenovo')
+    ORDER BY precio DESC
+    LIMIT 1;
+    
+SELECT nombre, precio
+	FROM producto
+    WHERE codigo_fabricante = (SELECT codigo FROM fabricante WHERE nombre='Asus') 
+		AND precio > (
+        SELECT AVG(precio)
+        FROM producto 
+        WHERE codigo_fabricante = (SELECT codigo FROM fabricante WHERE nombre='Asus'));
+        
+SELECT nombre
+	FROM fabricante
+    WHERE codigo IN (SELECT DISTINCT codigo_fabricante FROM producto);
+    
+SELECT nombre
+	FROM fabricante
+    WHERE codigo NOT IN(SELECT DISTINCT codigo_fabricante FROM producto);
+    
+SELECT f.nombre
+FROM fabricante f
+WHERE (
+    SELECT COUNT(*) FROM producto p
+    WHERE p.codigo_fabricante = (SELECT codigo FROM fabricante WHERE nombre = 'Lenovo')
+) = (
+    SELECT COUNT(*) FROM producto p2
+    WHERE p2.codigo_fabricante = f.codigo
+);

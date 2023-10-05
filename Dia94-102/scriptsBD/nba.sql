@@ -12,6 +12,42 @@ CREATE TABLE IF NOT EXISTS equipos (
   Division varchar(9) DEFAULT NULL,
   PRIMARY KEY (Nombre)
 );
+
+CREATE TABLE IF NOT EXISTS jugadores (
+  codigo int NOT NULL,
+  Nombre varchar(30) DEFAULT NULL,
+  Procedencia varchar(20) DEFAULT NULL,
+  Altura varchar(4) DEFAULT NULL,
+  Peso int DEFAULT NULL,
+  Posicion varchar(5) DEFAULT NULL,
+  Nombre_equipo varchar(20) DEFAULT NULL,
+  PRIMARY KEY (codigo),
+  FOREIGN KEY (Nombre_equipo) References equipos(Nombre)
+);
+
+CREATE TABLE IF NOT EXISTS estadisticas (
+  temporada varchar(5) NOT NULL ,
+  jugador int NOT NULL ,
+  Puntos_por_partido float DEFAULT NULL,
+  Asistencias_por_partido float DEFAULT NULL,
+  Tapones_por_partido float DEFAULT NULL,
+  Rebotes_por_partido float DEFAULT NULL,
+  PRIMARY KEY (temporada,jugador),
+  FOREIGN KEY (jugador) REFERENCES Jugadores(Codigo)
+);
+
+CREATE TABLE IF NOT EXISTS partidos (
+  codigo int NOT NULL,
+  equipo_local varchar(20) DEFAULT NULL,
+  equipo_visitante varchar(20) DEFAULT NULL,
+  puntos_local int DEFAULT NULL,
+  puntos_visitante int DEFAULT NULL,
+  temporada varchar(5) DEFAULT NULL,
+  PRIMARY KEY (codigo),
+  FOREIGN KEY (equipo_local) REFERENCES equipos(nombre),
+  FOREIGN KEY (equipo_visitante) REFERENCES equipos(nombre)
+);
+
 INSERT INTO equipos VALUES ('Celtics','Boston','East','Atlantic');
 INSERT INTO equipos VALUES ('Raptors','Toronto','East','Atlantic');
 INSERT INTO equipos VALUES ('76ers','Philadelphia','East','Atlantic');
@@ -42,18 +78,6 @@ INSERT INTO equipos VALUES ('Spurs','San Antonio','West','SouthWest');
 INSERT INTO equipos VALUES ('Rockets','Houston','West','SouthWest');
 INSERT INTO equipos VALUES ('Mavericks','Dallas','West','SouthWest');
 INSERT INTO equipos VALUES ('Grizzlies','Memphis','West','SouthWest');
-
-CREATE TABLE IF NOT EXISTS jugadores (
-  codigo int NOT NULL,
-  Nombre varchar(30) DEFAULT NULL,
-  Procedencia varchar(20) DEFAULT NULL,
-  Altura varchar(4) DEFAULT NULL,
-  Peso int DEFAULT NULL,
-  Posicion varchar(5) DEFAULT NULL,
-  Nombre_equipo varchar(20) DEFAULT NULL,
-  PRIMARY KEY (codigo),
-  FOREIGN KEY (Nombre_equipo) References equipos(Nombre)
-);
 
 INSERT INTO jugadores VALUES (1,'Corey Brever','Florida','6-9',185,'F-G','Timberwolves');
 INSERT INTO jugadores VALUES (2,'Greg Buckner','Clemson','6-4',210,'G-F','Timberwolves');
@@ -487,17 +511,6 @@ INSERT INTO jugadores VALUES (610,'Kosta Perovic',NULL,'7-2',240,'C','Warriors')
 INSERT INTO jugadores VALUES (611,'Mickael Pietrus',NULL,'6-6',215,'F','Warriors');
 INSERT INTO jugadores VALUES (612,'C.J. Watson',NULL,'6-2',180,'G','Warriors');
 INSERT INTO jugadores VALUES (613,'Brandan Wright',NULL,'6-9',205,'F','Warriors');
-
-CREATE TABLE IF NOT EXISTS estadisticas (
-  temporada varchar(5) NOT NULL ,
-  jugador int NOT NULL ,
-  Puntos_por_partido float DEFAULT NULL,
-  Asistencias_por_partido float DEFAULT NULL,
-  Tapones_por_partido float DEFAULT NULL,
-  Rebotes_por_partido float DEFAULT NULL,
-  PRIMARY KEY (temporada,jugador),
-  FOREIGN KEY (jugador) REFERENCES Jugadores(Codigo)
-);
 
 INSERT INTO estadisticas VALUES ('03/04',283,5.9,2.2,1.54,1.6);
 INSERT INTO estadisticas VALUES ('04/05',283,4.6,1.8,0.98,1.6);
@@ -2884,19 +2897,6 @@ INSERT INTO estadisticas VALUES ('99/00',129,1.8,2.4,0,0.8);
 INSERT INTO estadisticas VALUES ('00/01',129,2.2,3.3,0,1.2);
 INSERT INTO estadisticas VALUES ('01/02',129,5.3,3.4,0,1.4);
 INSERT INTO estadisticas VALUES ('02/03',129,6.4,3.8,0,2.5);
-
-
-CREATE TABLE IF NOT EXISTS partidos (
-  codigo int NOT NULL,
-  equipo_local varchar(20) DEFAULT NULL,
-  equipo_visitante varchar(20) DEFAULT NULL,
-  puntos_local int DEFAULT NULL,
-  puntos_visitante int DEFAULT NULL,
-  temporada varchar(5) DEFAULT NULL,
-  PRIMARY KEY (codigo),
-  FOREIGN KEY (equipo_local) REFERENCES equipos(nombre),
-  FOREIGN KEY (equipo_visitante) REFERENCES equipos(nombre)
-);
 
 INSERT INTO partidos VALUES (1,'Raptors','Lakers',74,117,'98/99');
 INSERT INTO partidos VALUES (2,'Raptors','Grizzlies',70,118,'98/99');
