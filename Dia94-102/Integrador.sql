@@ -7,11 +7,11 @@ SELECT COUNT(Asistencias_por_partido)
 		SELECT MAX(Asistencias_por_partido)
 			FROM estadisticas);
             
-#CLAVE CANDADO A = 10400
+#CLAVE CANDADO A = 14043
 SELECT  SUM(j.peso)
 	FROM jugadores j
     INNER JOIN equipos e ON e.Nombre = j.Nombre_equipo
-    WHERE e.Conferencia = 'East' AND j.Posicion LIKE 'C%';
+    WHERE e.Conferencia = 'East' AND j.Posicion LIKE '%C%';
     
 #POSICION CANDADO B = 3
 SELECT COUNT(j.codigo)
